@@ -1,9 +1,9 @@
 package com.ism.Repository.list;
 
-import com.ism.entities.Client;
+import com.ism.entities.Medecin;
 
-public interface IClientRep extends IRepository<Client> {
+public interface IClientRep extends IRepository<Medecin> {
 
-    Client selectBySurname(String value);
+    Medecin selectBySurname(String value);
 
 }

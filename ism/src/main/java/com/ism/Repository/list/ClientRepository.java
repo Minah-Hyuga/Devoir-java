@@ -1,7 +1,7 @@
 package com.ism.Repository.list;
 
-import com.ism.entities.Client;
+import com.ism.entities.Medecin;
 
-public class ClientRepository extends RepositoryImpl<Client> {
+public class ClientRepository extends RepositoryImpl<Medecin> {
 
 }

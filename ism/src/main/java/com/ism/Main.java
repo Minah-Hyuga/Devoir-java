@@ -2,19 +2,20 @@ package com.ism;
 
 import java.util.Scanner;
 
-import com.ism.Repository.list.ClientRepository;
+import com.ism.Repository.db.IMedecinRepository;
+import com.ism.Repository.db.MedecinRepositoryDB;
+import com.ism.Repository.db.RVRepositoryDB;
 import com.ism.Repository.list.IRepository;
-import com.ism.Repository.list.UserRep;
-import com.ism.Services.ClientService;
-import com.ism.Services.IClientSer;
-import com.ism.Services.IUserService;
-import com.ism.Services.UserService;
-import com.ism.View.ClientView;
-import com.ism.View.IClientView;
+import com.ism.Services.IMedecinSer;
+import com.ism.Services.IRVService;
+import com.ism.Services.MedecinService;
+import com.ism.Services.RVService;
+import com.ism.View.IMedecinView;
 import com.ism.View.IView;
-import com.ism.View.UserView;
+import com.ism.View.MedecinView;
+import com.ism.View.RVView;
 import com.ism.View.View;
-import com.ism.entities.User;
+import com.ism.entities.RV;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
@@ -23,29 +24,26 @@ public class Main {
 
         View.setScanner(scanner);
         int choice;
-        ClientRepository clientRep = new ClientRepository();
-        IClientSer clientService = new ClientService(clientRep);
-        IClientView clientView = new ClientView();
+        IMedecinRepository medecinRep = new MedecinRepositoryDB();
+        IMedecinSer medecinService = new MedecinService(medecinRep);
+        IMedecinView medecinView = new MedecinView();
 
-        IRepository<User> userRep = new UserRep();
-        IUserService userService = new UserService(userRep);
-        IView<User> userView = new UserView();
+        IRepository<RV> rvRep = new RVRepositoryDB();
+        IRVService rvService = new RVService(rvRep);
+        IView<RV> rvView = new RVView();
 
         do {
             choice = menu();
             scanner.nextLine();
             switch (choice) {
                 case 1:
-                    clientService.create(clientView.saisie());
+                    medecinService.create(medecinView.saisie());
                     break;
                 case 2:
-                    clientView.afficher(clientService.getAll());
+                    rvService.create(rvView.saisie());
                     break;
                 case 3:
-                    userService.create(userView.saisie());
-                    break;
-                case 4:
-                    userView.afficher(userService.getAll());
+                    rvView.afficher(rvService.getAll());
                     break;
                 default:
                     break;
@@ -56,11 +54,10 @@ public class Main {
     }
 
     public static int menu() {
-        System.out.println("1- Créer un client");
-        System.out.println("2- Lister les clients");
-        System.out.println("3- Créer un utilisateurs");
-        System.out.println("4- LIster les utilisateurs");
-        System.out.println("5- Quitter");
+        System.out.println("1- Enregistrer un medecin");
+        System.out.println("2- Enregitrer un rendez-vous");
+        System.out.println("3- LIster les rendez-vous");
+        System.out.println("4- Quitter");
         System.out.print("Faites votre choix : ");
         return scanner.nextInt();
     }

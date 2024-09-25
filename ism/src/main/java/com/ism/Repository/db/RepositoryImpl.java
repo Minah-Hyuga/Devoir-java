@@ -10,7 +10,7 @@ import com.ism.Repository.list.IRepository;
 
 public abstract class RepositoryImpl<T> implements IRepository<T> {
     protected Connection conn = null;
-    protected String dbName = "ges_boutique";
+    protected String dbName = "ges_medecin";
     protected String user = "root";
     protected String pass = "";
     protected String table;
@@ -19,7 +19,7 @@ public abstract class RepositoryImpl<T> implements IRepository<T> {
         try {
             if (conn == null || conn.isClosed()) {
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:8889/" + dbName, user, pass);
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName, user, pass);
             }
         } catch (ClassNotFoundException e) {
             System.out.println("Erreur de chargement du Driver: " + e.getMessage());
